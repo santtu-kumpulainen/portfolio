@@ -129,9 +129,8 @@
 
 
   /* Layout */
-
   --container-content: var(--ds-container-content);
-
+  --max-width-measure: var(--ds-measure-text);
 
   /* Border Radius */
 

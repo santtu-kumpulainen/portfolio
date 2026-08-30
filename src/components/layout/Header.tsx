@@ -18,6 +18,7 @@ export default function Header() {
   return (
     <header className="border-b border-border">
       <div className="mx-auto max-w-content px-page">
+        
         {/* Header row */}
         <div className="flex h-16 items-center justify-between">
           <Link
