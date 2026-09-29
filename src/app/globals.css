@@ -1,0 +1,196 @@
+@import "tailwindcss";
+
+:root {
+  /* colors */
+
+  --ds-color-background: #0f1113;
+  --ds-color-surface: #15181c;
+  --ds-color-surface-elevated: #1b1f24;
+
+  --ds-color-text: #f3f4f6;
+  --ds-color-text-muted: #a7adb5;
+  --ds-color-text-subtle: #737a84;
+
+  --ds-color-border: #292e35;
+  --ds-color-border-subtle: #20242a;
+
+  --ds-color-accent: #3b82f6;
+  --ds-color-accent-hover: #60a5fa;
+  --ds-color-accent-muted: #1d4ed8;
+
+  --ds-color-focus: #60a5fa;
+
+
+  /* typography */
+
+  --ds-font-body: var(--font-geist), system-ui, sans-serif;
+  --ds-font-mono: var(--font-jetbrains-mono), monospace;
+
+  --ds-leading-tight: 1.2;
+  --ds-leading-normal: 1.5;
+  --ds-leading-relaxed: 1.6;
+
+
+  /* spacing */
+
+  --ds-space-page: 1.25rem;
+
+  --ds-space-xs: 0.25rem;
+  --ds-space-sm: 0.5rem;
+  --ds-space-md: 1rem;
+  --ds-space-lg: 1.5rem;
+  --ds-space-xl: 2rem;
+  --ds-space-2xl: 3rem;
+  --ds-space-3xl: 4rem;
+  --ds-space-4xl: 6rem;
+  --ds-space-5xl: 8rem;
+
+  --ds-space-section: 6rem;
+  --ds-space-section-lg: 8rem;
+
+
+  /* layout */
+
+  --ds-container-content: 70rem;
+  --ds-measure-text: 65ch;
+
+
+  /* border radius */
+
+  --ds-radius-sm: 0.25rem;
+  --ds-radius-md: 0.5rem;
+  --ds-radius-lg: 0.75rem;
+  --ds-radius-full: 9999px;
+
+
+  /* shadows */
+
+  --ds-shadow-sm: 0 1px 2px rgb(0 0 0 / 0.18);
+  --ds-shadow-md: 0 4px 12px rgb(0 0 0 / 0.22);
+  --ds-shadow-lg: 0 12px 32px rgb(0 0 0 / 0.28);
+
+
+  /* motion */
+
+  --ds-duration-fast: 150ms;
+  --ds-duration-normal: 200ms;
+
+  --ds-ease-standard: ease;
+}
+
+
+@theme inline {
+  /* Colors */
+
+  --color-background: var(--ds-color-background);
+  --color-surface: var(--ds-color-surface);
+  --color-surface-elevated: var(--ds-color-surface-elevated);
+
+  --color-text: var(--ds-color-text);
+  --color-text-muted: var(--ds-color-text-muted);
+  --color-text-subtle: var(--ds-color-text-subtle);
+
+  --color-border: var(--ds-color-border);
+  --color-border-subtle: var(--ds-color-border-subtle);
+
+  --color-accent: var(--ds-color-accent);
+  --color-accent-hover: var(--ds-color-accent-hover);
+  --color-accent-muted: var(--ds-color-accent-muted);
+
+  --color-focus: var(--ds-color-focus);
+
+
+  /* Typography */
+
+  --font-sans: var(--ds-font-body);
+  --font-mono: var(--ds-font-mono);
+
+  --leading-tight: var(--ds-leading-tight);
+  --leading-normal: var(--ds-leading-normal);
+  --leading-relaxed: var(--ds-leading-relaxed);
+
+
+  /* Spacing */
+
+  --spacing-page: var(--ds-space-page);
+
+  --spacing-xs: var(--ds-space-xs);
+  --spacing-sm: var(--ds-space-sm);
+  --spacing-md: var(--ds-space-md);
+  --spacing-lg: var(--ds-space-lg);
+  --spacing-xl: var(--ds-space-xl);
+  --spacing-2xl: var(--ds-space-2xl);
+  --spacing-3xl: var(--ds-space-3xl);
+  --spacing-4xl: var(--ds-space-4xl);
+  --spacing-5xl: var(--ds-space-5xl);
+
+  --spacing-section: var(--ds-space-section);
+  --spacing-section-lg: var(--ds-space-section-lg);
+
+
+  /* Layout */
+  --container-content: var(--ds-container-content);
+  --max-width-measure: var(--ds-measure-text);
+
+  /* Border Radius */
+
+  --radius-sm: var(--ds-radius-sm);
+  --radius-md: var(--ds-radius-md);
+  --radius-lg: var(--ds-radius-lg);
+  --radius-full: var(--ds-radius-full);
+
+
+  /* Shadows */
+
+  --shadow-sm: var(--ds-shadow-sm);
+  --shadow-md: var(--ds-shadow-md);
+  --shadow-lg: var(--ds-shadow-lg);
+
+
+  /* Motion */
+
+  --duration-fast: var(--ds-duration-fast);
+  --duration-normal: var(--ds-duration-normal);
+
+  --ease-standard: var(--ds-ease-standard);
+}
+
+
+html {
+  scroll-behavior: smooth;
+}
+
+
+body {
+  background: var(--ds-color-background);
+  color: var(--ds-color-text);
+  font-family: var(--ds-font-body);
+  line-height: var(--ds-leading-normal);
+  -webkit-font-smoothing: antialiased;
+}
+
+
+::selection {
+  background: var(--ds-color-accent);
+  color: #ffffff;
+}
+
+
+:focus-visible {
+  outline: 2px solid var(--ds-color-focus);
+  outline-offset: 3px;
+}
+
+
+@media (min-width: 768px) {
+  :root {
+    --ds-space-page: 2rem;
+  }
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
