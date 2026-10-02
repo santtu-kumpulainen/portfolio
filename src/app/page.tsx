@@ -1,6 +1,7 @@
 // Import components
 import Header from "@/components/layout/Header";
 import Hero from "@/components/sections/Hero"
+import Projects from "@/components/sections/Projects";
 
 export default function Home() {
   return (
@@ -10,13 +11,7 @@ export default function Home() {
       <Hero />
 
       <main>
-        <section className="min-h-screen">
-          <h1>heee</h1>
-        </section>
-
-        <section id="projects" className="min-h-screen">
-          <h2>Projects</h2>
-        </section>
+        <Projects />
 
         <section id="skills" className="min-h-screen">
           <h2>Skills</h2>
