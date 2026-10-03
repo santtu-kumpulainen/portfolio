@@ -26,7 +26,7 @@ export default function Hero() {
 
                         <p className="mt-4 max-w-measure text-base leading-relaxed text-text-muted">
                             My interests range from application development and backend
-                            systems to Linux, networking, virtualization, Docker and
+                            systems to Linux, networking, virtualization and
                             self-hosted infrastructure. I am currently building my own
                             homelab and learning infrastructure by setting it up piece by
                             piece.
