@@ -6,10 +6,10 @@ import { useState } from "react";
 
 // Navigation items
 const navigation = [
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-  { label: "Homelab", href: "#homelab" },
-  { label: "Contact", href: "#contact" },
+  { label: "Projects", href: "/#projects" },
+  { label: "Skills", href: "/#skills" },
+  { label: "Homelab", href: "/#homelab" },
+  { label: "Contact", href: "/#contact" },
 ];
 
 export default function Header() {

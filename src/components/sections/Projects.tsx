@@ -1,13 +1,8 @@
 import Image from "next/image";
+import Link from "next/link";
 
-import { featuredProjects } from "@/data/projects";
-import type { Project, ProjectType } from "@/types/project";
-
-const projectTypeLabels: Record<ProjectType, string> = {
-  client: "Client project",
-  school: "School project",
-  personal: "Personal project",
-};
+import { featuredProjects, projectTypeLabels } from "@/data/projects";
+import type { Project } from "@/types/project";
 
 function ProjectVisual({ project }: { project: Project }) {
   if (project.image) {
@@ -141,8 +136,20 @@ export default function Projects() {
                       ))}
                     </ul>
 
-                    {project.links.length > 0 && (
+                    {(project.caseStudy || project.links.length > 0) && (
                       <ul className="mt-4 flex flex-wrap gap-5 text-sm">
+                        {project.caseStudy && (
+                          <li>
+                            <Link
+                              href={`/projects/${project.slug}`}
+                              className="inline-flex min-h-11 items-center gap-1 text-accent transition-colors duration-fast hover:text-accent-hover"
+                            >
+                              Case study
+                              <span className="sr-only">: {project.title}</span>
+                              <span aria-hidden="true">→</span>
+                            </Link>
+                          </li>
+                        )}
                         {project.links.map((link) => (
                           <li key={link.href}>
                             <a
