@@ -1,4 +1,10 @@
-import type { Project } from "@/types/project";
+import type { Project, ProjectType } from "@/types/project";
+
+export const projectTypeLabels: Record<ProjectType, string> = {
+  client: "Client project",
+  school: "School project",
+  personal: "Personal project",
+};
 
 // Facts come from the Obsidian project notes (PORTFOLIO/Projects), 07 Project Inventory
 // and this repository. Leave fields out rather than guessing; missing content is
@@ -48,8 +54,8 @@ export const projects: Project[] = [
         "Custom domain with SSL and CDN",
       ],
       challenges: [
-        { problem: "Tailwind CSS v4 configuration" },
-        { problem: "Hover and CTA styling" },
+        { problem: "Optimizing speed and SEO" },
+        { problem: "Learning Next.js ja Typescript" },
         { problem: "Mobile navigation and navigation behavior" },
         { problem: "TypeScript build errors" },
         { problem: "React hooks" },
@@ -103,16 +109,14 @@ export const projects: Project[] = [
       built: [
         "Astra child theme with a custom PHP header rendered through WordPress hooks, replacing the default Astra header",
         "Custom navigation with dropdowns, a mobile hamburger menu and a sticky header",
-        "A \"Varaa rata\" call to action",
-        "Custom CSS, hover states and Google Fonts (Manrope and Inter)",
+        "Automated competition archive system",
         "Competition cards generated dynamically with PHP and WP_Query, with poster, status, name, description and one or two client-configured links",
         "Responsive card layout with hover interaction, poster zoom, a \"show more\" overlay and a lightbox",
         "Content management that lets the client add, edit and publish competitions without programming",
       ],
       database: [
-        "Competitions modelled as the custom post type \"kilpailu\"",
+        "Competitions modelled as the custom post type",
         "ACF fields for poster, status, name, short description, button text and URL, and an optional second button",
-        "Database management with phpMyAdmin",
       ],
       security: [
         "User roles and permissions for client-managed content",
@@ -121,7 +125,7 @@ export const projects: Project[] = [
       deployment: [
         "Published to a domain and hosting provider",
         "Domain email accounts and SMTP email configuration",
-        "Hosting management with cPanel and phpMyAdmin",
+        "Hosting management with cPanel",
       ],
       learned: [
         "WordPress development",
@@ -138,7 +142,7 @@ export const projects: Project[] = [
         "SMTP and email configuration",
         "Domain and hosting",
         "Database management",
-        "phpMyAdmin and cPanel",
+        "cPanel",
         "Accessibility",
         "Client documentation",
         "Troubleshooting",
@@ -163,9 +167,10 @@ export const projects: Project[] = [
     type: "school",
     period: "2026",
     role: "Planning and implementation",
+    status: "In progress",
     featured: true,
     summary:
-      "Final assignment: a system for managing work-based learning periods, students, workplaces and workplace supervisors, intentionally limited to essential functionality.",
+      "School assignment: a system for managing work-based learning periods, students, workplaces and workplace supervisors, intentionally limited to essential functionality.",
     technologies: ["PHP", "JavaScript", "MariaDB", "SQL", "PDO"],
     highlights: [
       "Relational data model and ER diagram with primary and foreign keys",
@@ -200,10 +205,12 @@ export const projects: Project[] = [
         "JavaScript OOP and frontend/backend integration",
         "Git, GitHub and project documentation",
       ],
+      liked: ["PLACEHOLDER"],
       demonstrates: [
         "Requirements analysis",
         "Data modelling and ER diagrams",
         "Relational database design",
+        "Gituhub issues",
         "SQL",
         "PHP database access with PDO",
         "JavaScript frontend logic and OOP",

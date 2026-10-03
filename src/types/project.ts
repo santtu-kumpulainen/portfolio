@@ -18,6 +18,7 @@ export type ProjectChallenge = {
 export type ProjectCaseStudy = {
   overview?: string;
   built?: string[];
+  technologyChoices?: string[];
   architecture?: string;
   database?: string[];
   security?: string[];
