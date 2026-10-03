@@ -42,6 +42,8 @@ export type Project = {
   featured: boolean;
   // Compact content shown on the Home page.
   summary: string;
+  // Cover image for the Home page; the case study gallery uses caseStudy.images.
+  image?: ProjectImage;
   technologies: string[];
   highlights: string[];
   links: ExternalLink[];

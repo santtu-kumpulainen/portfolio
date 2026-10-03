@@ -39,7 +39,7 @@ export const projects: Project[] = [
       architecture:
         "Next.js App Router with TypeScript. Content and data are separated from presentation and rendered through reusable components. The contact form is handled server-side, and the structure is prepared for a possible future CMS migration.",
       security: [
-        "Secrets such as the Resend API key kept outside committed source code using environment variables",
+        "Secrets such as the API key kept outside committed source code using environment variables",
       ],
       deployment: [
         "Vercel with GitHub integration and automatic deployments",
@@ -92,7 +92,7 @@ export const projects: Project[] = [
     technologies: ["WordPress", "PHP", "JavaScript", "HTML", "CSS", "ACF"],
     highlights: [
       "Astra child theme with a custom header rendered through WordPress hooks",
-      "Competitions as a custom post type with ACF fields, rendered dynamically with WP_Query",
+      "Competitions as a custom post type with ACF fields, rendered dynamically with WP_Query, automated archive system",
       "Client-managed content, user roles and client documentation",
       "Published on a domain and hosting service, including SMTP email configuration",
     ],
