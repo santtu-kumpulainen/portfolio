@@ -72,7 +72,7 @@ export default function Hero() {
 
                         <div className="mt-6 flex flex-wrap gap-5 text-sm text-text-subtle">
                             <a
-                                href="#"
+                                href="https://github.com/santtu-kumpulainen"
                                 className="transition-colors duration-fast hover:text-text"
                             >
                                 GitHub
