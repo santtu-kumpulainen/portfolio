@@ -296,7 +296,7 @@ export const otherProjects: OtherProject[] = [
     period: "Summer 2025",
     summary:
       "A web application for Bouncing Ball game mdn excersice using Javascript, canavs and Classes",
-    technologies: ["JavaScript", "html", "Canva", "Classes"],
+    technologies: ["JavaScript", "HTML", "Canvas", "Classes"],
     links: [
       { label: "Source code", href: "https://github.com/santtu-kumpulainen/Bouncing-ball-excercise" },
     ],

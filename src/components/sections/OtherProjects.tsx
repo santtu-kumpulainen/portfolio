@@ -19,7 +19,7 @@ export default function OtherProjects() {
           Smaller school and personal projects without a full case study.
         </p>
 
-        <ul className="mt-10 grid gap-x-12 md:grid-cols-2">
+        <ul className="mt-10 grid gap-x-12 gap-y-8 md:grid-cols-2">
           {otherProjects.map((project) => (
             <li key={project.slug} className="border-t border-border-subtle py-8">
               <article aria-labelledby={`other-project-${project.slug}`}>
