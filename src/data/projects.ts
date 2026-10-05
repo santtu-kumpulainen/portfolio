@@ -197,6 +197,13 @@ export const projects: Project[] = [
         "SQL: CREATE TABLE, INSERT, SELECT, UPDATE, DELETE, JOIN, WHERE and ORDER BY",
         "Database management with phpMyAdmin",
       ],
+      databaseDiagram: {
+        src: "/projects/teo/teo-jakso.drawio.png",
+        alt: "ER diagram of the TEO database with tables for students, work-based learning periods, workplaces, workplace supervisors, teachers and demonstrations, linked by primary and foreign keys.",
+        caption: "ER diagram of the database structure and relationships.",
+        width: 680,
+        height: 632,
+      },
       learned: [
         "How a database-driven web application is designed and built as a complete system, from the frontend through JavaScript and the PHP API to the database",
         "Why the database structure should be designed before implementation: a clear data model makes SQL queries and application development easier to manage",

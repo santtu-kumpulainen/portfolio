@@ -8,6 +8,12 @@ export type ProjectImage = {
   caption?: string;
 };
 
+// Diagrams keep their own aspect ratio instead of being cropped like photos.
+export type ProjectDiagram = ProjectImage & {
+  width: number;
+  height: number;
+};
+
 export type ProjectChallenge = {
   problem: string;
   solution?: string;
@@ -21,6 +27,7 @@ export type ProjectCaseStudy = {
   technologyChoices?: string[];
   architecture?: string;
   database?: string[];
+  databaseDiagram?: ProjectDiagram;
   security?: string[];
   deployment?: string[];
   challenges?: ProjectChallenge[];
