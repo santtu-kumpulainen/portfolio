@@ -6,7 +6,11 @@ import type { ReactNode } from "react";
 
 import Header from "@/components/layout/Header";
 import { projects, projectTypeLabels } from "@/data/projects";
-import type { ProjectChallenge, ProjectImage } from "@/types/project";
+import type {
+  ProjectChallenge,
+  ProjectDiagram,
+  ProjectImage,
+} from "@/types/project";
 
 // Only slugs from the project data exist; anything else is a 404.
 export const dynamicParams = false;
@@ -171,6 +175,28 @@ function Figure({ image, sizes }: { image: ProjectImage; sizes: string }) {
   );
 }
 
+function Diagram({ diagram }: { diagram: ProjectDiagram }) {
+  return (
+    <figure className="w-fit max-w-full">
+      <div className="overflow-hidden rounded-md border border-border bg-diagram">
+        <Image
+          src={diagram.src}
+          alt={diagram.alt}
+          width={diagram.width}
+          height={diagram.height}
+          sizes="(min-width: 768px) 680px, 100vw"
+          className="h-auto max-w-full"
+        />
+      </div>
+      {diagram.caption && (
+        <figcaption className="mt-3 text-sm text-text-subtle">
+          {diagram.caption}
+        </figcaption>
+      )}
+    </figure>
+  );
+}
+
 function SectionBlock({ section }: { section: Section }) {
   return (
     <section aria-labelledby={section.id}>
@@ -326,8 +352,16 @@ export default async function ProjectPage({
         hasItems(caseStudy.database) && {
           id: "database",
           title: "Database",
-          content: listContent(caseStudy.database, true),
-          row: "infrastructure",
+          content: caseStudy.databaseDiagram ? (
+            <div className="space-y-10">
+              {listContent(caseStudy.database, true)}
+              <Diagram diagram={caseStudy.databaseDiagram} />
+            </div>
+          ) : (
+            listContent(caseStudy.database, true)
+          ),
+          // A diagram needs the full width to stay readable.
+          row: caseStudy.databaseDiagram ? undefined : "infrastructure",
         },
         hasItems(caseStudy.security) && {
           id: "security",
