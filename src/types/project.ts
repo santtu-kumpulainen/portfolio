@@ -50,3 +50,9 @@ export type Project = {
   links: ExternalLink[];
   caseStudy?: ProjectCaseStudy;
 };
+
+// Smaller projects listed on the Home page without a case study page.
+export type OtherProject = Pick<
+  Project,
+  "slug" | "title" | "type" | "period" | "summary" | "technologies" | "links"
+>;

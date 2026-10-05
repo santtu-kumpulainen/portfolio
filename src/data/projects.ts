@@ -1,4 +1,4 @@
-import type { Project, ProjectType } from "@/types/project";
+import type { OtherProject, Project, ProjectType } from "@/types/project";
 
 export const projectTypeLabels: Record<ProjectType, string> = {
   client: "Client project",
@@ -254,3 +254,32 @@ export const projects: Project[] = [
 ];
 
 export const featuredProjects = projects.filter((project) => project.featured);
+
+// Kept separate from `projects` so these do not get case study pages.
+// Facts come from 07 Project Inventory, the project READMEs and the owner.
+export const otherProjects: OtherProject[] = [
+  {
+    slug: "opiskelijahelpdesk",
+    title: "OpiskelijaHelpdesk",
+    type: "school",
+    period: "Autumn 2026",
+    summary:
+      "A ticket system for students' technical support requests, with separate student, support and admin roles. Started as a school assignment and continued as my own project.",
+    technologies: ["PHP", "JavaScript", "MariaDB", "PDO", "Docker"],
+    links: [
+      { label: "Source code", href: "https://github.com/santtu-kumpulainen/opiskelijahelpdesk" },
+    ],
+  },
+  {
+    slug: "retkikohteet",
+    title: "Retkikohteet",
+    type: "school",
+    period: "Autumn 2026",
+    summary:
+      "A web application for managing hiking destinations, with map-based location picking and weather data from the Open-Meteo API. Started as a school assignment and continued as my own project.",
+    technologies: ["PHP", "JavaScript", "MariaDB", "PDO", "Leaflet", "Open-Meteo API", "Docker"],
+    links: [
+      { label: "Source code", href: "https://github.com/santtu-kumpulainen/retkikohteet" },
+    ],
+  },
+];
