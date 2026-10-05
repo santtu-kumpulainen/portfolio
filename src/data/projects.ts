@@ -289,4 +289,16 @@ export const otherProjects: OtherProject[] = [
       { label: "Source code", href: "https://github.com/santtu-kumpulainen/retkikohteet" },
     ],
   },
+  {
+    slug: "bouncingball",
+    title: "Bouncing ball",
+    type: "school",
+    period: "Summer 2025",
+    summary:
+      "A web application for Bouncing Ball game mdn excersice using Javascript, canavs and Classes",
+    technologies: ["JavaScript", "html", "Canva", "Classes"],
+    links: [
+      { label: "Source code", href: "https://github.com/santtu-kumpulainen/Bouncing-ball-excercise" },
+    ],
+  },
 ];
