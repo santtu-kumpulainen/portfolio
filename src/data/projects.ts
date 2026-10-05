@@ -181,7 +181,7 @@ export const projects: Project[] = [
     links: [],
     caseStudy: {
       overview:
-        "A school final assignment in which I designed and implemented a system for managing work-based learning periods. The intended system manages students, workplaces, workplace supervisors, work-based learning periods, demonstrations, assessments and student progress. As a school project it was intentionally limited to essential functionality and understanding the system structure, and it was designed around the information and needs involved in managing work-based learning.",
+        "A school assignment in which I designed and implemented a system for managing work-based learning periods. The intended system manages students, workplaces, workplace supervisors, work-based learning periods, demonstrations, assessments and student progress. As a school project it was intentionally limited to essential functionality and understanding the system structure, and it was designed around the information and needs involved in managing work-based learning.",
       built: [
         "Data model with entities, attributes, primary and foreign keys and basic normalization",
         "ER diagram of the database structure and relationships",
