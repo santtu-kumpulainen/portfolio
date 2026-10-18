@@ -180,6 +180,14 @@ export default function Projects() {
             );
           })}
         </ol>
+
+        <Link
+          href="/projects"
+          className="inline-flex min-h-11 items-center gap-1 text-sm text-accent transition-colors duration-fast hover:text-accent-hover"
+        >
+          All projects
+          <span aria-hidden="true">→</span>
+        </Link>
       </div>
     </section>
   );
