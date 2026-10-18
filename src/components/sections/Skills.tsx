@@ -6,8 +6,6 @@ type EvidenceLink = { label: string; href: string };
 // Resolves evidence slugs to links. Throws so a typo fails the build instead of
 // rendering a skill with missing evidence.
 function resolveEvidence(slug: string): EvidenceLink {
-  if (slug === "homelab") return { label: "Homelab", href: "#homelab" };
-
   const project = projects.find((item) => item.slug === slug);
   if (project) return { label: project.title, href: `/projects/${project.slug}` };
 

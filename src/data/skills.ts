@@ -1,6 +1,6 @@
 import type { SkillGroup } from "@/types/skill";
 
-// Every skill needs evidence from src/data/projects.ts or the Homelab section.
+// Every skill needs evidence from src/data/projects.ts.
 // Skills without a documented project (for example C# and Python) stay out
 // until project data exists. No percentages or levels.
 export const skillGroups: SkillGroup[] = [

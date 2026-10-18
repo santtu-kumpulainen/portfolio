@@ -1,3 +1,4 @@
+import { homelab } from "@/data/homelab";
 import type { OtherProject, Project, ProjectType } from "@/types/project";
 
 export const projectTypeLabels: Record<ProjectType, string> = {
@@ -339,6 +340,93 @@ export const projects: Project[] = [
       ],
       result:
         "The project combines database structure, backend logic and frontend in one application instead of focusing only on the UI. It has strengthened my interest in application development, APIs and backend programming.",
+    },
+  },
+  {
+    // Facts from the Obsidian Homelab notes and the owner. Public content stays
+    // high level: no addresses, hostnames, VM IDs, ports, providers or hardware models.
+    slug: "homelab",
+    title: "Homelab",
+    type: "personal",
+    period: "Ongoing",
+    year: "ongoing",
+    featured: false,
+    summary: homelab.summary,
+    technologies: [
+      "Proxmox VE",
+      "OPNsense",
+      "Debian",
+      "Docker",
+      "Docker Compose",
+      "AdGuard Home",
+      "MariaDB",
+      "NFS",
+    ],
+    highlights: [
+      "Proxmox VE host with a virtualized OPNsense firewall between the WAN and LAN",
+      "Separate Debian virtual machines for DNS filtering and Docker services",
+      "Services kept on the LAN behind the firewall",
+    ],
+    links: [],
+    caseStudy: {
+      overview:
+        "A personal infrastructure project on a small Proxmox VE server, built to learn networking, firewalls, Linux and Docker in practice. A virtualized OPNsense firewall routes my home network, and separate Debian virtual machines run DNS filtering and Docker services.",
+      architecture:
+        "The ISP modem only bridges the connection. The host has two network cards: one carries the WAN to the OPNsense virtual machine, the other carries the LAN to a managed switch. The other virtual machines and the Proxmox management interface are on the LAN side, behind the firewall.",
+      architectureDiagram: {
+        src: "/projects/homelab/homelab-architecture.svg",
+        alt: "Homelab architecture: the internet connects to an ISP modem in bridge mode and then to a Proxmox VE host with two network cards. On the host, an OPNsense virtual machine handles the firewall, routing, DHCP and VPN routing for selected devices. A LAN bridge connects an AdGuard Home virtual machine, a Debian Docker virtual machine running MariaDB and phpMyAdmin, and a Debian template. The host storage disk is shared to the Docker virtual machine over NFS. LAN traffic goes through a managed network switch to the LAN devices, including a workstation that runs Docker for local development.",
+        caption: "Simplified architecture. Addresses, names and other private details are left out on purpose.",
+        width: 460,
+        height: 780,
+      },
+      infrastructure: [
+        "Proxmox VE runs the firewall, DNS and Docker virtual machines; new Debian machines are cloned from a prepared template",
+        "OPNsense handles the firewall, routing and DHCP with reserved addresses for servers, plus VPN routing for selected devices",
+        "AdGuard Home provides network-wide DNS filtering in its own virtual machine, with encrypted upstream DNS",
+        "A Debian virtual machine is dedicated to Docker services, with one Docker Compose stack per service, such as MariaDB and phpMyAdmin",
+        "The host's storage disk is shared to the Docker virtual machine over NFS",
+        "Virtual machines and configurations are backed up automatically",
+        "Separately from the server, Docker also runs on my workstation for local development",
+      ],
+      challengesAndLessons: [
+        {
+          problem: "Separating the WAN and LAN on a single host",
+          solution:
+            "OPNsense runs as a virtual machine instead of on a separate firewall machine, which kept the setup within my hardware budget. Two network cards keep WAN and LAN traffic on separate physical interfaces, each with its own Proxmox bridge. Getting it working meant mapping cards to bridges and firewall interfaces, bringing up a LAN card that stayed down and getting a public WAN address after switching the modem to bridge mode.",
+        },
+        {
+          problem: "Configuring OPNsense as the home router",
+          solution:
+            "DHCP with reserved addresses for servers, DNS handed to AdGuard Home and VPN routing only for selected devices. Every change affects the whole home network, so I documented the setup step by step.",
+        },
+        {
+          problem: "Understanding when a service is exposed",
+          solution:
+            "Publishing a port in Docker only makes a service reachable on the LAN. Reaching it from the internet would need a port forward and a firewall rule in OPNsense, so services such as phpMyAdmin stay on the LAN.",
+        },
+        {
+          problem: "Learning Linux administration",
+          solution:
+            "Preparing the Debian template meant removing personal users and making clones generate their own SSH host keys and machine ID. Debugging services taught me to check systemd units, SELinux and file permissions.",
+        },
+        {
+          problem: "Smaller example: switch configuration backup over TFTP",
+          solution:
+            "tcpdump showed the switch's request arriving and strace found a permission error when the file was created, but the cause is still unknown. The next attempt is the switch's HTTP backup.",
+          unresolved: true,
+        },
+      ],
+      planned: [
+        "NAS storage, with backups moved to it",
+        "A reverse proxy for the self-hosted services",
+        "Monitoring with Grafana, Prometheus and Uptime Kuma",
+        "Vaultwarden as a self-hosted password manager",
+        "Jellyfin as a media server",
+        "Later: a Homelab Manager application built on the platform APIs",
+      ],
+      status:
+        "Ongoing. The network, virtual machines and Docker services are in use; next come NAS storage and a reverse proxy.",
     },
   },
   {
