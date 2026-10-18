@@ -5,62 +5,57 @@ import type { SkillGroup } from "@/types/skill";
 // until project data exists. No percentages or levels.
 export const skillGroups: SkillGroup[] = [
   {
-    title: "Web development",
+    title: "Application development",
     skills: [
-      { name: "HTML & CSS", evidence: ["pielaveden-keilahalli", "teo"] },
+      { name: "TypeScript", evidence: ["mpk-consulting", "lomakeavustin", "portfolio"] },
       {
         name: "JavaScript",
         evidence: ["teo", "pielaveden-keilahalli", "opiskelijahelpdesk", "retkikohteet"],
       },
-      { name: "TypeScript", evidence: ["mpk-consulting", "lomakeavustin", "portfolio"] },
       { name: "React & Next.js", evidence: ["mpk-consulting", "lomakeavustin", "portfolio"] },
+      {
+        name: "PHP",
+        evidence: ["teo", "pielaveden-keilahalli", "opiskelijahelpdesk", "retkikohteet"],
+      },
+      { name: "HTML & CSS", evidence: ["pielaveden-keilahalli", "teo"] },
       { name: "Tailwind CSS", evidence: ["mpk-consulting", "lomakeavustin", "portfolio"] },
       { name: "WordPress", evidence: ["pielaveden-keilahalli"] },
     ],
   },
   {
-    title: "Backend & APIs",
-    skills: [
-      {
-        name: "PHP",
-        evidence: ["teo", "pielaveden-keilahalli", "opiskelijahelpdesk", "retkikohteet"],
-      },
-      { name: "Node.js & Express", evidence: ["lomakeavustin"] },
-      { name: "REST-type APIs and CRUD", evidence: ["lomakeavustin", "teo"] },
-      { name: "External API integration", evidence: ["retkikohteet"] },
-    ],
-  },
-  {
-    title: "Databases",
+    title: "Data & backend",
     skills: [
       {
         name: "MariaDB & SQL",
         evidence: ["lomakeavustin", "teo", "opiskelijahelpdesk", "retkikohteet"],
       },
+      { name: "REST-type APIs and CRUD", evidence: ["lomakeavustin", "teo"] },
+      { name: "Node.js & Express", evidence: ["lomakeavustin"] },
       { name: "PDO", evidence: ["teo", "opiskelijahelpdesk", "retkikohteet"] },
       { name: "Relational modeling & ER diagrams", evidence: ["lomakeavustin", "teo"] },
+      { name: "External API integration", evidence: ["retkikohteet"] },
     ],
   },
   {
-    title: "Development workflow",
+    title: "Infrastructure & networking",
+    skills: [
+      { name: "Linux (Debian)", evidence: ["homelab"] },
+      {
+        name: "Docker",
+        evidence: ["lomakeavustin", "opiskelijahelpdesk", "retkikohteet", "portfolio", "homelab"],
+      },
+      { name: "Proxmox & virtualization", evidence: ["homelab"] },
+      { name: "Networking (OPNsense)", evidence: ["homelab"] },
+    ],
+  },
+  {
+    title: "Development tools",
     skills: [
       {
         name: "Git & GitHub",
         evidence: ["lomakeavustin", "teo", "opiskelijahelpdesk", "retkikohteet", "portfolio"],
       },
       { name: "Vercel", evidence: ["mpk-consulting"] },
-    ],
-  },
-  {
-    title: "Infrastructure",
-    skills: [
-      {
-        name: "Docker",
-        evidence: ["lomakeavustin", "opiskelijahelpdesk", "retkikohteet", "portfolio", "homelab"],
-      },
-      { name: "Linux (Debian)", evidence: ["homelab"] },
-      { name: "Proxmox & virtualization", evidence: ["homelab"] },
-      { name: "Networking (OPNsense)", evidence: ["homelab"] },
     ],
   },
 ];
