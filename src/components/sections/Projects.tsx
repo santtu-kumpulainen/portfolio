@@ -4,42 +4,108 @@ import Link from "next/link";
 import { featuredProjects, projectTypeLabels } from "@/data/projects";
 import type { Project } from "@/types/project";
 
-function ProjectVisual({ project }: { project: Project }) {
+const visualSizes = "(min-width: 1120px) 620px, (min-width: 1024px) 58vw, 100vw";
+
+// Real project material first: the cover screenshot, else the ER diagram from
+// the case study, else a typographic panel. No fake screenshots.
+function ProjectMedia({ project }: { project: Project }) {
   if (project.image) {
     return (
-      <figure>
-        <div className="relative aspect-[16/10] overflow-hidden rounded-md border border-border bg-surface">
-          <Image
-            src={project.image.src}
-            alt={project.image.alt}
-            fill
-            sizes="(min-width: 768px) 40vw, 100vw"
-            className="object-cover"
-          />
-        </div>
-        {project.image.caption && (
-          <figcaption className="mt-3 text-sm text-text-subtle">
-            {project.image.caption}
-          </figcaption>
-        )}
-      </figure>
+      <Image
+        src={project.image.src}
+        alt={project.image.alt}
+        fill
+        sizes={visualSizes}
+        className="object-cover object-top"
+      />
     );
   }
 
-  // Typographic placeholder until real project material exists. It repeats the
-  // heading, so it is hidden from assistive tech and avoids any fake screenshot UI.
+  const diagram = project.caseStudy?.databaseDiagram;
+  if (diagram) {
+    return (
+      <div className="absolute inset-0 bg-diagram p-6">
+        <div className="relative size-full">
+          <Image
+            src={diagram.src}
+            alt={diagram.alt}
+            fill
+            sizes={visualSizes}
+            className="object-contain"
+          />
+        </div>
+      </div>
+    );
+  }
+
+  // Repeats the heading, so it is hidden from assistive tech.
   return (
-    <div
-      aria-hidden="true"
-      className="flex aspect-[16/10] flex-col justify-between rounded-md border border-border-subtle bg-surface p-6 md:p-8"
-    >
-      <span className="h-px w-8 bg-accent" />
-      <div>
-        <p className="text-sm text-text-subtle">{projectTypeLabels[project.type]}</p>
-        <p className="mt-2 text-xl font-semibold tracking-tight text-text-muted md:text-2xl">
+    <div aria-hidden="true" className="absolute inset-0 bg-surface">
+      <Image
+        src="/artwork/hero-topography.svg"
+        alt=""
+        fill
+        sizes={visualSizes}
+        className="object-cover object-right opacity-80"
+      />
+      <div className="absolute top-6 left-6 md:top-8 md:left-8">
+        <p className="font-mono text-xs tracking-wider text-text-subtle uppercase">
+          {projectTypeLabels[project.type]}
+        </p>
+        <p className="mt-2 text-2xl font-semibold tracking-tight text-text-muted md:text-3xl">
           {project.title}
         </p>
       </div>
+    </div>
+  );
+}
+
+function ProjectVisual({ project }: { project: Project }) {
+  const hasLinks = Boolean(project.caseStudy) || project.links.length > 0;
+
+  return (
+    <div>
+      <div className="overflow-hidden rounded-md border border-border bg-surface-elevated">
+        {/* 3:2 keeps the 16:10 screenshots almost whole (only side margins are cropped). */}
+        <div className="relative aspect-[3/2] overflow-hidden">
+          <ProjectMedia project={project} />
+        </div>
+
+        {/* Links sit on their own solid bar under the image, so they stay readable
+            whatever the screenshot looks like, and never depend on hover. */}
+        {hasLinks && (
+          <ul className="flex flex-wrap gap-2 border-t border-border p-3">
+            {project.caseStudy && (
+              <li>
+                <Link
+                  href={`/projects/${project.slug}`}
+                  className="inline-flex min-h-11 items-center gap-1.5 rounded-sm bg-text px-4 text-sm font-medium text-background transition-colors duration-fast hover:bg-white"
+                >
+                  Case study
+                  <span className="sr-only">: {project.title}</span>
+                  <span aria-hidden="true">→</span>
+                </Link>
+              </li>
+            )}
+            {project.links.map((link) => (
+              <li key={link.href}>
+                <a
+                  href={link.href}
+                  className="inline-flex min-h-11 items-center gap-1.5 rounded-sm border border-text-subtle px-4 text-sm font-medium text-text transition-colors duration-fast hover:border-text hover:bg-surface"
+                >
+                  {link.label}
+                  <span className="sr-only">: {project.title}</span>
+                  <span aria-hidden="true">↗</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        )}
+      </div>
+
+      {project.image?.caption && (
+        <p className="mt-3 text-sm text-text-subtle">{project.image.caption}</p>
+      )}
     </div>
   );
 }
@@ -78,15 +144,31 @@ export default function Projects() {
             return (
               <li
                 key={project.slug}
-                className="border-t border-border-subtle py-12 md:py-16"
+                className="border-t border-border-subtle py-14 md:py-20"
               >
                 <article
                   aria-labelledby={`project-${project.slug}`}
-                  className="grid gap-8 md:grid-cols-12 md:items-center md:gap-12"
+                  className="grid gap-8 lg:grid-cols-12 lg:items-center lg:gap-16"
                 >
                   {/* Text comes first in the DOM for reading order; the visual is reordered. */}
-                  <div className="md:col-span-7">
-                    <dl className="flex flex-wrap gap-x-3 gap-y-1 text-sm text-text-subtle">
+                  <div className="lg:col-span-5">
+                    <p
+                      aria-hidden="true"
+                      className="font-mono text-sm text-text-subtle"
+                    >
+                      {String(index + 1).padStart(2, "0")}
+                      <span className="text-border"> / </span>
+                      {String(featuredProjects.length).padStart(2, "0")}
+                    </p>
+
+                    <h3
+                      id={`project-${project.slug}`}
+                      className="mt-4 text-3xl font-semibold tracking-tight text-text md:text-4xl"
+                    >
+                      {project.title}
+                    </h3>
+
+                    <dl className="mt-3 flex flex-wrap gap-x-3 gap-y-1 text-sm text-text-subtle">
                       {meta.map((item, metaIndex) => (
                         <div
                           key={item.term}
@@ -100,7 +182,7 @@ export default function Projects() {
                           <dd
                             className={
                               item.term === "Type" && project.type === "client"
-                                ? "text-accent"
+                                ? "text-accent-hover"
                                 : undefined
                             }
                           >
@@ -110,18 +192,11 @@ export default function Projects() {
                       ))}
                     </dl>
 
-                    <h3
-                      id={`project-${project.slug}`}
-                      className="mt-3 text-2xl font-semibold tracking-tight text-text md:text-3xl"
-                    >
-                      {project.title}
-                    </h3>
-
-                    <p className="mt-4 max-w-measure leading-relaxed text-text-muted">
+                    <p className="mt-5 leading-relaxed text-text-muted md:text-lg">
                       {project.summary}
                     </p>
 
-                    <ul className="mt-5 max-w-measure list-disc space-y-2 pl-5 text-sm leading-relaxed text-text-muted marker:text-text-subtle">
+                    <ul className="mt-5 list-disc space-y-2 pl-5 text-sm leading-relaxed text-text-muted marker:text-text-subtle">
                       {project.highlights.map((highlight) => (
                         <li key={highlight}>{highlight}</li>
                       ))}
@@ -129,48 +204,27 @@ export default function Projects() {
 
                     <ul
                       aria-label="Technologies"
-                      className="mt-6 flex flex-wrap gap-x-4 gap-y-1 font-mono text-xs text-text-subtle"
+                      className="mt-6 flex flex-wrap gap-x-2 gap-y-1 border-t border-border-subtle pt-4 font-mono text-sm tracking-wide text-text uppercase"
                     >
-                      {project.technologies.map((technology) => (
-                        <li key={technology}>{technology}</li>
+                      {project.technologies.map((technology, techIndex) => (
+                        // Separator after each item, so a wrapped line never starts with one.
+                        <li key={technology} className="flex gap-2">
+                          {technology}
+                          {techIndex < project.technologies.length - 1 && (
+                            <span aria-hidden="true" className="text-text-subtle">
+                              ·
+                            </span>
+                          )}
+                        </li>
                       ))}
                     </ul>
-
-                    {(project.caseStudy || project.links.length > 0) && (
-                      <ul className="mt-4 flex flex-wrap gap-5 text-sm">
-                        {project.caseStudy && (
-                          <li>
-                            <Link
-                              href={`/projects/${project.slug}`}
-                              className="inline-flex min-h-11 items-center gap-1 text-accent transition-colors duration-fast hover:text-accent-hover"
-                            >
-                              Case study
-                              <span className="sr-only">: {project.title}</span>
-                              <span aria-hidden="true">→</span>
-                            </Link>
-                          </li>
-                        )}
-                        {project.links.map((link) => (
-                          <li key={link.href}>
-                            <a
-                              href={link.href}
-                              className="inline-flex min-h-11 items-center gap-1 text-text transition-colors duration-fast hover:text-accent"
-                            >
-                              {link.label}
-                              <span className="sr-only">: {project.title}</span>
-                              <span aria-hidden="true">↗</span>
-                            </a>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
                   </div>
 
                   <div
                     className={
                       index % 2 === 0
-                        ? "order-first md:col-span-5"
-                        : "order-first md:order-last md:col-span-5"
+                        ? "order-first lg:col-span-7"
+                        : "order-first lg:order-last lg:col-span-7"
                     }
                   >
                     <ProjectVisual project={project} />

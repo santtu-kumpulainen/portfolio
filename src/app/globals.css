@@ -3,16 +3,18 @@
 :root {
   /* colors */
 
-  --ds-color-background: #0f1113;
-  --ds-color-surface: #15181c;
-  --ds-color-surface-elevated: #1b1f24;
+  --ds-color-background: #15181c;
+  --ds-color-surface: #1b1f24;
+  --ds-color-surface-elevated: #22272e;
+  /* slightly lighter slate band that separates sections (Skills, Contact) */
+  --ds-color-band: #1c222a;
 
   --ds-color-text: #f3f4f6;
   --ds-color-text-muted: #a7adb5;
-  --ds-color-text-subtle: #7d848e;
+  --ds-color-text-subtle: #858c96;
 
   --ds-color-border: #292e35;
-  --ds-color-border-subtle: #20242a;
+  --ds-color-border-subtle: #252a31;
 
   --ds-color-accent: #3b82f6;
   --ds-color-accent-hover: #60a5fa;
@@ -22,6 +24,9 @@
 
   /* light backing for diagrams exported with a transparent background */
   --ds-color-diagram: #f3f4f6;
+
+  /* form validation errors on dark backgrounds */
+  --ds-color-error: #f2a093;
 
 
   /* typography */
@@ -88,6 +93,7 @@
   --color-background: var(--ds-color-background);
   --color-surface: var(--ds-color-surface);
   --color-surface-elevated: var(--ds-color-surface-elevated);
+  --color-band: var(--ds-color-band);
 
   --color-text: var(--ds-color-text);
   --color-text-muted: var(--ds-color-text-muted);
@@ -102,6 +108,8 @@
 
   --color-focus: var(--ds-color-focus);
   --color-diagram: var(--ds-color-diagram);
+
+  --color-error: var(--ds-color-error);
 
 
   /* Typography */
@@ -162,6 +170,8 @@
 
 html {
   scroll-behavior: smooth;
+  /* Keeps anchor targets clear of the sticky header (h-16 plus breathing room). */
+  scroll-padding-top: 5rem;
 }
 
 
