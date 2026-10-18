@@ -17,8 +17,7 @@ export default function Contact() {
           </h2>
 
           <p className="mt-4 max-w-measure text-base leading-relaxed text-text-muted">
-            I&apos;m available for junior developer roles, internships and summer
-            jobs in Finland or remote. Email is the best way to reach me.
+            Email is the best way to reach me.
           </p>
         </div>
 

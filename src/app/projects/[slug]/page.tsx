@@ -200,7 +200,12 @@ function Figure({ image, sizes }: { image: ProjectImage; sizes: string }) {
   );
 }
 
+const DIAGRAM_DISPLAY_WIDTH = 680;
+
 function Diagram({ diagram }: { diagram: ProjectDiagram }) {
+  // Large diagrams become unreadable at display width, so link the original.
+  const showFullSize = diagram.width > DIAGRAM_DISPLAY_WIDTH;
+
   return (
     <figure className="w-fit max-w-full">
       <div className="overflow-hidden rounded-md border border-border bg-diagram">
@@ -209,13 +214,23 @@ function Diagram({ diagram }: { diagram: ProjectDiagram }) {
           alt={diagram.alt}
           width={diagram.width}
           height={diagram.height}
-          sizes="(min-width: 768px) 680px, 100vw"
+          sizes={`(min-width: 768px) ${DIAGRAM_DISPLAY_WIDTH}px, 100vw`}
           className="h-auto max-w-full"
+          style={showFullSize ? { width: DIAGRAM_DISPLAY_WIDTH } : undefined}
         />
       </div>
-      {diagram.caption && (
-        <figcaption className="mt-3 text-sm text-text-subtle">
-          {diagram.caption}
+      {(diagram.caption || showFullSize) && (
+        <figcaption className="mt-3 flex flex-wrap items-center gap-x-5 text-sm text-text-subtle">
+          {diagram.caption && <span>{diagram.caption}</span>}
+          {showFullSize && (
+            <a
+              href={diagram.src}
+              className="inline-flex min-h-11 items-center gap-1 text-text transition-colors duration-fast hover:text-accent"
+            >
+              View full size
+              <span aria-hidden="true">↗</span>
+            </a>
+          )}
         </figcaption>
       )}
     </figure>
@@ -353,6 +368,16 @@ export default async function ProjectPage({
           title: "Overview",
           content: <Prose text={caseStudy.overview} lead />,
         },
+        caseStudy.problem && {
+          id: "problem",
+          title: "Problem and goals",
+          content: <Prose text={caseStudy.problem} />,
+        },
+        hasItems(caseStudy.requirements) && {
+          id: "requirements",
+          title: "Requirements and user needs",
+          content: listContent(caseStudy.requirements),
+        },
         hasItems(caseStudy.built) && {
           id: "built",
           title: "What I built",
@@ -388,11 +413,30 @@ export default async function ProjectPage({
           // A diagram needs the full width to stay readable.
           row: caseStudy.databaseDiagram ? undefined : "infrastructure",
         },
+        hasItems(caseStudy.implemented) && {
+          id: "implemented",
+          title: "Implemented functionality",
+          content: listContent(caseStudy.implemented),
+        },
+        hasItems(caseStudy.workflow) && {
+          id: "workflow",
+          title: "My role and AI-assisted workflow",
+          content: listContent(caseStudy.workflow),
+        },
         hasItems(caseStudy.security) && {
           id: "security",
-          title: "Security",
+          // With known gaps listed beside it, the title says these are in place.
+          title: hasItems(caseStudy.securityGaps)
+            ? "Security: implemented protections"
+            : "Security",
           content: listContent(caseStudy.security, true),
-          row: "infrastructure",
+          row: hasItems(caseStudy.securityGaps) ? "security" : "infrastructure",
+        },
+        hasItems(caseStudy.securityGaps) && {
+          id: "security-gaps",
+          title: "Security: known gaps",
+          content: listContent(caseStudy.securityGaps, true),
+          row: "security",
         },
         hasItems(caseStudy.deployment) && {
           id: "deployment",
@@ -442,6 +486,20 @@ export default async function ProjectPage({
             </p>
           ),
         },
+        hasItems(caseStudy.planned) && {
+          id: "planned",
+          title: "Planned improvements",
+          content: listContent(caseStudy.planned),
+        },
+        caseStudy.status && {
+          id: "status",
+          title: "Current status and next steps",
+          content: (
+            <p className="max-w-measure border-l-2 border-accent pl-6 text-lg leading-relaxed text-text">
+              {caseStudy.status}
+            </p>
+          ),
+        },
       ],
     },
     {
@@ -453,33 +511,40 @@ export default async function ProjectPage({
           title: "Project images",
           content: (
             <div className="space-y-16">
-              {otherImages.map((image, index) => (
-                <figure
-                  key={image.src}
-                  className="grid gap-4 md:grid-cols-12 md:items-end md:gap-10"
-                >
-                  <div
-                    className={
-                      index % 2 === 0
-                        ? "relative aspect-[16/10] overflow-hidden rounded-md border border-border bg-surface md:col-span-7"
-                        : "relative aspect-[16/10] overflow-hidden rounded-md border border-border bg-surface md:order-last md:col-span-7"
-                    }
+              {otherImages.map((image, index) => {
+                const isMobile = image.device === "mobile";
+                const frame = isMobile
+                  ? "relative aspect-[9/19.5] w-full max-w-64 overflow-hidden rounded-md border border-border bg-surface md:col-span-4"
+                  : "relative aspect-[16/10] overflow-hidden rounded-md border border-border bg-surface md:col-span-7";
+
+                return (
+                  <figure
+                    key={image.src}
+                    className="grid gap-4 md:grid-cols-12 md:items-end md:gap-10"
                   >
-                    <Image
-                      src={image.src}
-                      alt={image.alt}
-                      fill
-                      sizes="(min-width: 768px) 50vw, 100vw"
-                      className="object-cover"
-                    />
-                  </div>
-                  {image.caption && (
-                    <figcaption className="text-sm leading-relaxed text-text-subtle md:col-span-5">
-                      {image.caption}
-                    </figcaption>
-                  )}
-                </figure>
-              ))}
+                    <div className={index % 2 === 0 ? frame : `${frame} md:order-last`}>
+                      <Image
+                        src={image.src}
+                        alt={image.alt}
+                        fill
+                        sizes={isMobile ? "256px" : "(min-width: 768px) 50vw, 100vw"}
+                        className="object-cover object-top"
+                      />
+                    </div>
+                    {image.caption && (
+                      <figcaption
+                        className={
+                          isMobile
+                            ? "text-sm leading-relaxed text-text-subtle md:col-span-8"
+                            : "text-sm leading-relaxed text-text-subtle md:col-span-5"
+                        }
+                      >
+                        {image.caption}
+                      </figcaption>
+                    )}
+                  </figure>
+                );
+              })}
             </div>
           ),
         },
@@ -506,11 +571,11 @@ export default async function ProjectPage({
         <article aria-labelledby="project-title">
           <header className="mx-auto max-w-content px-page pt-12 pb-16 md:pt-16 md:pb-20">
             <Link
-              href="/#projects"
+              href="/projects"
               className="inline-flex min-h-11 items-center gap-1 text-sm text-text-muted transition-colors duration-fast hover:text-text"
             >
               <span aria-hidden="true">←</span>
-              Featured projects
+              All projects
             </Link>
 
             <div className="mt-10 grid gap-12 lg:grid-cols-12 lg:gap-10">

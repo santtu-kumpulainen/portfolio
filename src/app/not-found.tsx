@@ -46,7 +46,7 @@ export default function NotFound() {
             </li>
             <li>
               <Link
-                href="/#projects"
+                href="/projects"
                 className="inline-flex min-h-11 items-center text-sm text-text-muted transition-colors duration-fast hover:text-text"
               >
                 View projects

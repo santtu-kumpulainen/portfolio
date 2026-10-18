@@ -1,4 +1,4 @@
-import { currentFocus, skillGroups } from "@/data/skills";
+import { skillGroups } from "@/data/skills";
 import { otherProjects, projects } from "@/data/projects";
 
 type EvidenceLink = { label: string; href: string };
@@ -37,16 +37,6 @@ export default function Skills() {
             Technologies I have used in client, school and personal projects.
             Each skill links to the work where it was used.
           </p>
-
-          <h3 className="mt-10 text-sm text-text-subtle">Current focus</h3>
-
-          <ul className="mt-3 space-y-2 text-sm leading-relaxed text-text-muted">
-            {currentFocus.map((item) => (
-              <li key={item} className="border-t border-border-subtle pt-2">
-                {item}
-              </li>
-            ))}
-          </ul>
         </div>
 
         <div className="space-y-10 md:col-span-7">

@@ -5,16 +5,16 @@ import type { SkillGroup } from "@/types/skill";
 // until project data exists. No percentages or levels.
 export const skillGroups: SkillGroup[] = [
   {
-    title: "Web Development",
+    title: "Web development",
     skills: [
-      { name: "HTML & CSS", evidence: ["pielaveden-keilahalli", "bouncingball"] },
+      { name: "HTML & CSS", evidence: ["pielaveden-keilahalli", "teo"] },
       {
         name: "JavaScript",
         evidence: ["teo", "pielaveden-keilahalli", "opiskelijahelpdesk", "retkikohteet"],
       },
-      { name: "TypeScript", evidence: ["mpk-consulting", "portfolio"] },
-      { name: "React & Next.js", evidence: ["mpk-consulting", "portfolio"] },
-      { name: "Tailwind CSS", evidence: ["mpk-consulting", "portfolio"] },
+      { name: "TypeScript", evidence: ["mpk-consulting", "lomakeavustin", "portfolio"] },
+      { name: "React & Next.js", evidence: ["mpk-consulting", "lomakeavustin", "portfolio"] },
+      { name: "Tailwind CSS", evidence: ["mpk-consulting", "lomakeavustin", "portfolio"] },
       { name: "WordPress", evidence: ["pielaveden-keilahalli"] },
     ],
   },
@@ -25,22 +25,29 @@ export const skillGroups: SkillGroup[] = [
         name: "PHP",
         evidence: ["teo", "pielaveden-keilahalli", "opiskelijahelpdesk", "retkikohteet"],
       },
-      { name: "REST-type APIs and CRUD", evidence: ["teo"] },
+      { name: "Node.js & Express", evidence: ["lomakeavustin"] },
+      { name: "REST-type APIs and CRUD", evidence: ["lomakeavustin", "teo"] },
       { name: "External API integration", evidence: ["retkikohteet"] },
     ],
   },
   {
     title: "Databases",
     skills: [
-      { name: "MariaDB & SQL", evidence: ["teo", "opiskelijahelpdesk", "retkikohteet"] },
+      {
+        name: "MariaDB & SQL",
+        evidence: ["lomakeavustin", "teo", "opiskelijahelpdesk", "retkikohteet"],
+      },
       { name: "PDO", evidence: ["teo", "opiskelijahelpdesk", "retkikohteet"] },
-      { name: "Relational modelling & ER diagrams", evidence: ["teo"] },
+      { name: "Relational modeling & ER diagrams", evidence: ["lomakeavustin", "teo"] },
     ],
   },
   {
     title: "Development workflow",
     skills: [
-      { name: "Git & GitHub", evidence: ["portfolio"] },
+      {
+        name: "Git & GitHub",
+        evidence: ["lomakeavustin", "teo", "opiskelijahelpdesk", "retkikohteet", "portfolio"],
+      },
       { name: "Vercel", evidence: ["mpk-consulting"] },
     ],
   },
@@ -49,20 +56,11 @@ export const skillGroups: SkillGroup[] = [
     skills: [
       {
         name: "Docker",
-        evidence: ["portfolio", "opiskelijahelpdesk", "retkikohteet", "homelab"],
+        evidence: ["lomakeavustin", "opiskelijahelpdesk", "retkikohteet", "portfolio", "homelab"],
       },
       { name: "Linux (Debian)", evidence: ["homelab"] },
       { name: "Proxmox & virtualization", evidence: ["homelab"] },
       { name: "Networking (OPNsense)", evidence: ["homelab"] },
     ],
   },
-];
-
-// From the "Current focus" list in the portfolio planning notes.
-export const currentFocus = [
-  "Docker & containerization",
-  "Linux",
-  "Networking",
-  "Backend / APIs",
-  "Infrastructure",
 ];

@@ -14,4 +14,4 @@ export const siteName = "Santtu Kumpulainen";
 export const siteRole = "Software Development Student";
 export const siteTitle = `${siteName} | ${siteRole}`;
 export const siteDescription =
-  "Portfolio of a final-year software development student interested in application development, backend systems, networking and infrastructure.";
+  "Projects by Santtu Kumpulainen, a final-year software development student at Savo Vocational College: web applications, databases, backend work and a homelab.";

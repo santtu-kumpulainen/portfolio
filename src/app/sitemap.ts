@@ -7,6 +7,7 @@ import { siteUrl } from "@/data/site";
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: new URL("/", siteUrl).href },
+    { url: new URL("/projects", siteUrl).href },
     ...projects.map((project) => ({
       url: new URL(`/projects/${project.slug}`, siteUrl).href,
     })),

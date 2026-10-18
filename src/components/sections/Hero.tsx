@@ -1,13 +1,10 @@
 import { profileLinks } from "@/data/links";
 
 const focusAreas = [
-    "Web Development",
-    "Application Development",
+    "Web development",
     "Backend & APIs",
     "Databases",
-    "Linux",
-    "Networking",
-    "Infrastructure",
+    "Linux & infrastructure",
 ];
 
 export default function Hero() {
@@ -26,17 +23,10 @@ export default function Hero() {
                 </h1>
 
                 <p className="mt-6 max-w-measure text-base leading-relaxed text-text-muted md:text-lg">
-                    Final-year software development student at Savo Vocational
-                    College. I enjoy building useful software, automating repetitive
-                    tasks, and solving practical problems with code.
-                </p>
-
-                <p className="mt-4 max-w-measure text-base leading-relaxed text-text-muted">
-                    My interests range from application development and backend
-                    systems to Linux, networking, virtualization and
-                    self-hosted infrastructure. I am currently building my own
-                    homelab and learning infrastructure by setting it up piece by
-                    piece.
+                    I&apos;m a final-year software development student at Savo
+                    Vocational College. I build web applications with databases
+                    and APIs, and I run a small homelab to learn Linux, networking
+                    and virtualization.
                 </p>
 
                 <ul aria-label="Focus areas" className="mt-8 flex flex-wrap gap-2">
@@ -60,7 +50,7 @@ export default function Hero() {
                         href="#projects"
                         className="inline-flex min-h-11 items-center rounded-sm bg-accent px-5 text-sm font-medium text-white transition-colors duration-fast hover:bg-accent-hover"
                     >
-                        View Projects
+                        View projects
                     </a>
 
                     <a

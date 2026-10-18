@@ -6,6 +6,8 @@ export type ProjectImage = {
   src: string;
   alt: string;
   caption?: string;
+  // Phone screenshots keep a portrait frame instead of the 16:10 crop.
+  device?: "mobile";
 };
 
 // Diagrams keep their own aspect ratio instead of being cropped like photos.
@@ -23,19 +25,29 @@ export type ProjectChallenge = {
 // Every field is optional: leave it out when the source notes do not cover it.
 export type ProjectCaseStudy = {
   overview?: string;
+  problem?: string;
+  requirements?: string[];
   built?: string[];
   technologyChoices?: string[];
   architecture?: string;
   database?: string[];
   databaseDiagram?: ProjectDiagram;
+  // Used instead of `built` when the code was not written mainly by me, so the
+  // heading does not overstate authorship; `workflow` explains how it was made.
+  implemented?: string[];
+  workflow?: string[];
   security?: string[];
+  securityGaps?: string[];
   deployment?: string[];
   challenges?: ProjectChallenge[];
   learned?: string[];
   liked?: string[];
   differently?: string[];
   demonstrates?: string[];
+  planned?: string[];
   result?: string;
+  // Current state of an unfinished project and what comes next.
+  status?: string;
   images?: ProjectImage[];
 };
 
