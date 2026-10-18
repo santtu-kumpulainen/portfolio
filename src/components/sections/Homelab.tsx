@@ -9,7 +9,7 @@ import { projects } from "@/data/projects";
 const diagram = projects.find((project) => project.slug === "homelab")?.caseStudy
   ?.architectureDiagram;
 
-const components = ["Proxmox", "OPNsense", "Debian", "Docker", "AdGuard Home", "NFS"];
+const components = ["Proxmox", "OPNsense", "Debian", "Docker", "AdGuard Home", "NFS", "Linux", "Networking"];
 
 export default function Homelab() {
   return (
@@ -53,7 +53,7 @@ export default function Homelab() {
             ))}
           </ul>
 
-          <h3 className="mt-6 text-sm text-text-subtle">Planned</h3>
+          <h3 className="mt-6 text-m text-subtle">Planned</h3>
           <ul className="mt-2 space-y-1 text-sm leading-relaxed text-text-muted">
             {homelab.planned.slice(0, 3).map((item) => (
               <li key={item}>{item}</li>
