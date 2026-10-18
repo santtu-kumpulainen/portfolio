@@ -6,7 +6,9 @@ import type { ReactNode } from "react";
 
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import { alt as shareImageAlt, size as shareImageSize } from "@/app/opengraph-image";
 import { projects, projectTypeLabels } from "@/data/projects";
+import { siteName } from "@/data/site";
 import type {
   ProjectChallenge,
   ProjectDiagram,
@@ -32,9 +34,31 @@ export async function generateMetadata({
 
   if (!project) return {};
 
+  const title = `${project.title} | ${siteName}`;
+  const url = `/projects/${project.slug}`;
+  const images = [{ url: "/opengraph-image", ...shareImageSize, alt: shareImageAlt }];
+
+  // Nested openGraph and twitter objects replace the root ones, including the
+  // file-based share image, so the shared fields are repeated here.
   return {
-    title: `${project.title} | Santtu Kumpulainen`,
+    title,
     description: project.summary,
+    alternates: { canonical: url },
+    openGraph: {
+      type: "article",
+      url,
+      siteName,
+      title,
+      description: project.summary,
+      locale: "en",
+      images,
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description: project.summary,
+      images,
+    },
   };
 }
 
