@@ -5,6 +5,7 @@ import { notFound } from "next/navigation";
 import type { ReactNode } from "react";
 
 import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
 import { projects, projectTypeLabels } from "@/data/projects";
 import type {
   ProjectChallenge,
@@ -565,6 +566,8 @@ export default async function ProjectPage({
           </div>
         </article>
       </main>
+
+      <Footer />
     </>
   );
 }
