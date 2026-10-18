@@ -4,6 +4,8 @@ import Hero from "@/components/sections/Hero"
 import Projects from "@/components/sections/Projects";
 import OtherProjects from "@/components/sections/OtherProjects";
 import Homelab from "@/components/sections/Homelab";
+import Contact from "@/components/sections/Contact";
+import Footer from "@/components/layout/Footer";
 
 export default function Home() {
   return (
@@ -23,10 +25,10 @@ export default function Home() {
 
         <Homelab />
 
-        <section id="contact" className="min-h-screen">
-          <h2>Contact</h2>
-        </section>
+        <Contact />
       </main>
+
+      <Footer />
     </>
   );
 }
