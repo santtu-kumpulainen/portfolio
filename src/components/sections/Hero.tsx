@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 import { profileLinks } from "@/data/links";
 
 const focusAreas = [
@@ -9,7 +11,23 @@ const focusAreas = [
 
 export default function Hero() {
     return (
-        <section id="home" aria-labelledby="hero-heading" className="py-section">
+        <section
+            id="home"
+            aria-labelledby="hero-heading"
+            className="relative isolate overflow-hidden py-section"
+        >
+            {/* Decorative contours. On wide screens the mask keeps the text column
+                quiet; below xl the text spans the width, so only the lower part shows. */}
+            <Image
+                src="/artwork/hero-topography.svg"
+                alt=""
+                aria-hidden="true"
+                fill
+                loading="eager"
+                sizes="100vw"
+                className="-z-10 object-cover object-right opacity-70 [mask-image:linear-gradient(to_bottom,transparent_40%,black)] xl:opacity-100 xl:[mask-image:linear-gradient(to_right,transparent_30%,black_65%)]"
+            />
+
             <div className="mx-auto max-w-content px-page">
                 <p className="mb-3 font-mono text-sm text-accent">
                     Software Development Student
