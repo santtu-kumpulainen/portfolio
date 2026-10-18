@@ -1,6 +1,6 @@
 import type { ExternalLink } from "@/types/common";
 
-export type ProjectType = "client" | "school" | "personal";
+export type ProjectType = "client" | "school" | "school-exercise" | "personal";
 
 export type ProjectImage = {
   src: string;
@@ -56,6 +56,8 @@ export type Project = {
   title: string;
   type: ProjectType;
   period: string;
+  // Groups the project on the /projects timeline; `period` is the display text.
+  year: number | "ongoing";
   // Optional because not every project source documents a role or status.
   role?: string;
   status?: string;
@@ -73,5 +75,5 @@ export type Project = {
 // Smaller projects listed on the Home page without a case study page.
 export type OtherProject = Pick<
   Project,
-  "slug" | "title" | "type" | "period" | "summary" | "technologies" | "links"
+  "slug" | "title" | "type" | "period" | "year" | "summary" | "technologies" | "links"
 >;

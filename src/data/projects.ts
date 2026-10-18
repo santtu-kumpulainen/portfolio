@@ -3,6 +3,7 @@ import type { OtherProject, Project, ProjectType } from "@/types/project";
 export const projectTypeLabels: Record<ProjectType, string> = {
   client: "Client project",
   school: "School project",
+  "school-exercise": "School exercise",
   personal: "Personal project",
 };
 
@@ -15,6 +16,7 @@ export const projects: Project[] = [
     title: "MPK Consulting",
     type: "client",
     period: "Winter 2025/2026",
+    year: 2026,
     role: "Student developer",
     featured: true,
     summary:
@@ -86,6 +88,7 @@ export const projects: Project[] = [
     title: "Pielaveden Keilahalli",
     type: "client",
     period: "Spring 2026",
+    year: 2026,
     role: "Design and implementation",
     featured: true,
     summary:
@@ -146,6 +149,7 @@ export const projects: Project[] = [
     title: "Lomakeavustin: Smart Form Assistant",
     type: "school",
     period: "Autumn 2026",
+    year: 2026,
     role: "Planning, requirements and AI-assisted development",
     status: "In progress",
     featured: false,
@@ -278,6 +282,7 @@ export const projects: Project[] = [
     title: "TEO: Work-Based Learning Management",
     type: "school",
     period: "2026",
+    year: 2026,
     role: "Planning and implementation",
     status: "In progress",
     featured: true,
@@ -341,6 +346,7 @@ export const projects: Project[] = [
     title: "Developer Portfolio",
     type: "personal",
     period: "2026",
+    year: "ongoing",
     status: "In progress",
     featured: true,
     summary:
@@ -384,6 +390,7 @@ export const otherProjects: OtherProject[] = [
     title: "OpiskelijaHelpdesk",
     type: "school",
     period: "Autumn 2026",
+    year: 2026,
     summary:
       "A ticket system for students' technical support requests, with separate student, support and admin roles. A school assignment I continued as my own project.",
     technologies: ["PHP", "JavaScript", "MariaDB", "PDO", "Docker"],
@@ -396,11 +403,42 @@ export const otherProjects: OtherProject[] = [
     title: "Retkikohteet",
     type: "school",
     period: "Autumn 2026",
+    year: 2026,
     summary:
       "A web application for managing hiking destinations, with map-based location picking and weather data from the Open-Meteo API. A school assignment I continued as my own project.",
     technologies: ["PHP", "JavaScript", "MariaDB", "PDO", "Leaflet", "Open-Meteo API", "Docker"],
     links: [
       { label: "Source code", href: "https://github.com/santtu-kumpulainen/retkikohteet" },
+    ],
+  },
+];
+
+// Early school work shown only on the /projects timeline, not on Home.
+export const earlyProjects: OtherProject[] = [
+  {
+    slug: "terveyssivusto",
+    title: "TerveysSivusto",
+    type: "school",
+    period: "April 2025",
+    year: 2025,
+    summary:
+      "A basic PHP school project: a multi-page health website with a BMI calculator, a blood pressure category check and an exercise diary that saves entries to a text file and displays them in a chart.",
+    technologies: ["PHP", "JavaScript", "Bootstrap", "Chart.js"],
+    links: [
+      { label: "Source code", href: "https://github.com/santtu-kumpulainen/TerveysSivusto" },
+    ],
+  },
+  {
+    slug: "palkanlaskenta",
+    title: "Palkanlaskenta",
+    type: "school-exercise",
+    period: "December 2024",
+    year: 2024,
+    summary:
+      "A basic C# Windows Forms school exercise that calculates an employee's gross pay, tax and net pay from hours worked and an hourly wage, using a simplified tax-bracket model. Employee data and saved pay results are stored in text files.",
+    technologies: ["C#", ".NET", "Windows Forms"],
+    links: [
+      { label: "Source code", href: "https://github.com/santtu-kumpulainen/Palkanlaskenta" },
     ],
   },
 ];
