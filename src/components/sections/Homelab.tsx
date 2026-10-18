@@ -1,3 +1,5 @@
+import Link from "next/link";
+
 import { homelab } from "@/data/homelab";
 
 export default function Homelab() {
@@ -23,6 +25,15 @@ export default function Homelab() {
           <p className="mt-4 max-w-measure text-base leading-relaxed text-text-muted">
             {homelab.purpose}
           </p>
+
+          <Link
+            href="/projects/homelab"
+            className="mt-4 inline-flex min-h-11 items-center gap-1 text-sm text-accent transition-colors duration-fast hover:text-accent-hover"
+          >
+            Case study
+            <span className="sr-only">: Homelab</span>
+            <span aria-hidden="true">→</span>
+          </Link>
         </div>
 
         <div className="md:col-span-7">

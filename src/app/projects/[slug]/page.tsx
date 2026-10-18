@@ -148,7 +148,13 @@ function Prose({ text, lead = false }: { text: string; lead?: boolean }) {
   );
 }
 
-function Challenges({ challenges }: { challenges: ProjectChallenge[] }) {
+function Challenges({
+  challenges,
+  labels = { problem: "Problem", solution: "Solution" },
+}: {
+  challenges: ProjectChallenge[];
+  labels?: { problem: string; solution: string };
+}) {
   // Without any solutions the problems are just a list.
   if (!challenges.some((challenge) => challenge.solution)) {
     return listContent(challenges.map((challenge) => challenge.problem));
@@ -162,12 +168,14 @@ function Challenges({ challenges }: { challenges: ProjectChallenge[] }) {
           className="grid gap-4 border-t border-border-subtle pt-4 md:grid-cols-2 md:gap-8"
         >
           <div>
-            <dt className="text-sm text-text-subtle">Problem</dt>
+            <dt className="text-sm text-text-subtle">{labels.problem}</dt>
             <dd className="mt-1 leading-relaxed text-text">{challenge.problem}</dd>
           </div>
           {challenge.solution && (
             <div>
-              <dt className="text-sm text-text-subtle">Solution</dt>
+              <dt className="text-sm text-text-subtle">
+                {challenge.unresolved ? "Investigation so far (unresolved)" : labels.solution}
+              </dt>
               <dd className="mt-1 leading-relaxed text-text-muted">
                 {challenge.solution}
               </dd>
@@ -208,7 +216,7 @@ function Diagram({ diagram }: { diagram: ProjectDiagram }) {
 
   return (
     <figure className="w-fit max-w-full">
-      <div className="overflow-hidden rounded-md border border-border bg-diagram">
+      <div className="w-fit max-w-full overflow-hidden rounded-md border border-border bg-diagram">
         <Image
           src={diagram.src}
           alt={diagram.alt}
@@ -397,7 +405,14 @@ export default async function ProjectPage({
         caseStudy.architecture && {
           id: "architecture",
           title: "Architecture",
-          content: <Prose text={caseStudy.architecture} />,
+          content: caseStudy.architectureDiagram ? (
+            <div className="space-y-10">
+              <Prose text={caseStudy.architecture} />
+              <Diagram diagram={caseStudy.architectureDiagram} />
+            </div>
+          ) : (
+            <Prose text={caseStudy.architecture} />
+          ),
         },
         hasItems(caseStudy.database) && {
           id: "database",
@@ -412,6 +427,11 @@ export default async function ProjectPage({
           ),
           // A diagram needs the full width to stay readable.
           row: caseStudy.databaseDiagram ? undefined : "infrastructure",
+        },
+        hasItems(caseStudy.infrastructure) && {
+          id: "infrastructure",
+          title: "Infrastructure and services",
+          content: listContent(caseStudy.infrastructure),
         },
         hasItems(caseStudy.implemented) && {
           id: "implemented",
@@ -454,6 +474,16 @@ export default async function ProjectPage({
           id: "challenges",
           title: "Challenges and solutions",
           content: <Challenges challenges={caseStudy.challenges} />,
+        },
+        hasItems(caseStudy.challengesAndLessons) && {
+          id: "challenges-and-lessons",
+          title: "Technical challenges and what I learned",
+          content: (
+            <Challenges
+              challenges={caseStudy.challengesAndLessons}
+              labels={{ problem: "Challenge", solution: "What I did and learned" }}
+            />
+          ),
         },
         hasItems(caseStudy.learned) && {
           id: "learned",

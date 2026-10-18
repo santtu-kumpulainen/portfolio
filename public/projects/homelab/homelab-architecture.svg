@@ -1,0 +1,85 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="460" height="780" viewBox="0 0 460 780" role="img" aria-labelledby="title desc">
+  <title id="title">Homelab architecture</title>
+  <desc id="desc">Internet to an ISP modem in bridge mode, into a Proxmox VE host with two network cards. On the host, an OPNsense VM handles firewall, routing, DHCP and VPN routing for selected devices. A LAN bridge connects an AdGuard Home VM, a Debian Docker VM running MariaDB and phpMyAdmin, and a Debian template. The host storage disk is shared to the Docker VM over NFS. LAN traffic goes to a managed switch and the LAN devices, including a workstation that runs Docker for local development.</desc>
+  <!-- Sanitized on purpose: no addresses, hostnames, VM IDs, ports, interface names or hardware models. -->
+  <style>
+    text { font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif; }
+    .title { font-size: 15px; font-weight: 600; fill: #f3f4f6; }
+    .sub { font-size: 13px; fill: #a7adb5; }
+    .label { font-size: 12px; fill: #7d848e; }
+    .accent { font-size: 13px; font-weight: 600; fill: #60a5fa; }
+    .chip { font-family: ui-monospace, "JetBrains Mono", Menlo, monospace; font-size: 12px; fill: #f3f4f6; }
+    .box { fill: #1b1f24; stroke: #292e35; stroke-width: 1.5; }
+    .box-accent { fill: #1b1f24; stroke: #3b82f6; stroke-width: 1.5; }
+    .box-template { fill: #15181c; stroke: #3a4049; stroke-width: 1.5; stroke-dasharray: 5 4; }
+    .host { fill: none; stroke: #3a4049; stroke-width: 1.5; }
+    .chipbox { fill: #15181c; stroke: #292e35; stroke-width: 1; }
+    .line { stroke: #7d848e; stroke-width: 1.5; fill: none; }
+    .nfs { stroke: #60a5fa; stroke-width: 1.5; stroke-dasharray: 5 4; fill: none; }
+  </style>
+
+  <rect width="460" height="780" fill="#15181c"/>
+
+  <!-- Internet and modem -->
+  <rect class="box" x="170" y="20" width="120" height="36" rx="18"/>
+  <text class="title" x="230" y="43" text-anchor="middle">Internet</text>
+  <line class="line" x1="230" y1="56" x2="230" y2="80"/>
+
+  <rect class="box" x="20" y="80" width="420" height="40" rx="4"/>
+  <text class="title" x="230" y="105" text-anchor="middle">ISP modem <tspan class="sub">(bridge mode)</tspan></text>
+
+  <line class="line" x1="380" y1="120" x2="380" y2="210"/>
+  <text class="label" x="388" y="142">WAN</text>
+
+  <!-- Proxmox host -->
+  <rect class="host" x="20" y="150" width="420" height="460" rx="6"/>
+  <text class="accent" x="36" y="174">Proxmox VE host</text>
+  <text class="label" x="36" y="192">Small form factor PC with two network cards</text>
+
+  <rect class="box-accent" x="40" y="210" width="380" height="64" rx="4"/>
+  <text class="title" x="56" y="233">OPNsense VM</text>
+  <text class="sub" x="56" y="251">Firewall, routing and DHCP</text>
+  <text class="sub" x="56" y="267">VPN routing for selected devices</text>
+
+  <!-- LAN bridge spine -->
+  <line class="line" x1="56" y1="274" x2="56" y2="500"/>
+  <text class="label" x="66" y="294">LAN bridge</text>
+
+  <line class="line" x1="56" y1="330" x2="76" y2="330"/>
+  <rect class="box" x="76" y="306" width="324" height="48" rx="4"/>
+  <text class="title" x="92" y="326">AdGuard Home VM</text>
+  <text class="sub" x="92" y="344">Network-wide DNS filtering</text>
+
+  <line class="line" x1="56" y1="415" x2="76" y2="415"/>
+  <rect class="box" x="76" y="370" width="324" height="90" rx="4"/>
+  <text class="title" x="92" y="392">Debian Docker VM</text>
+  <text class="sub" x="92" y="410">Docker Engine and Compose stacks</text>
+  <rect class="chipbox" x="92" y="422" width="86" height="24" rx="3"/>
+  <text class="chip" x="135" y="438" text-anchor="middle">MariaDB</text>
+  <rect class="chipbox" x="186" y="422" width="104" height="24" rx="3"/>
+  <text class="chip" x="238" y="438" text-anchor="middle">phpMyAdmin</text>
+
+  <line class="line" x1="56" y1="500" x2="76" y2="500"/>
+  <rect class="box-template" x="76" y="476" width="324" height="48" rx="4"/>
+  <text class="title" x="92" y="496">Debian template</text>
+  <text class="sub" x="92" y="514">Base for new virtual machines</text>
+
+  <!-- Storage shared over NFS -->
+  <rect class="box" x="40" y="540" width="360" height="48" rx="4"/>
+  <text class="title" x="56" y="560">Host storage disk</text>
+  <text class="sub" x="56" y="578">Shared to the Docker VM</text>
+  <polyline class="nfs" points="400,564 420,564 420,415 400,415"/>
+  <text class="label" x="0" y="0" transform="translate(433 490) rotate(-90)" text-anchor="middle">NFS</text>
+
+  <!-- LAN side -->
+  <line class="line" x1="230" y1="610" x2="230" y2="640"/>
+  <text class="label" x="238" y="630">LAN, second network card</text>
+
+  <rect class="box" x="20" y="640" width="420" height="40" rx="4"/>
+  <text class="title" x="230" y="665" text-anchor="middle">Managed network switch</text>
+  <line class="line" x1="230" y1="680" x2="230" y2="700"/>
+
+  <rect class="box" x="20" y="700" width="420" height="60" rx="4"/>
+  <text class="title" x="36" y="722">LAN devices</text>
+  <text class="sub" x="36" y="742">Workstation with its own Docker for local development</text>
+</svg>

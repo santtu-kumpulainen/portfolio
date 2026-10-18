@@ -1,8 +1,6 @@
 import Link from "next/link";
 
-import { homelab } from "@/data/homelab";
 import { earlyProjects, otherProjects, projects, projectTypeLabels } from "@/data/projects";
-import { skillGroups } from "@/data/skills";
 import type { ExternalLink } from "@/types/common";
 import type { OtherProject, Project } from "@/types/project";
 
@@ -12,7 +10,7 @@ type TimelineEntry = {
   meta: string[];
   summary: string;
   technologies: string[];
-  // Internal page for the entry: a case study or a Home section.
+  // Internal page for the entry, the case study.
   page?: ExternalLink;
   links: ExternalLink[];
   compact: boolean;
@@ -44,22 +42,6 @@ function toEntry(project: Project | OtherProject): TimelineEntry {
   };
 }
 
-// The Homelab is not a project entry; its technologies come from the skills
-// that cite it as evidence, so nothing is listed that the site does not show.
-const homelabEntry: TimelineEntry = {
-  key: "homelab",
-  title: "Homelab",
-  meta: [projectTypeLabels.personal, "Ongoing"],
-  summary: homelab.summary,
-  technologies: skillGroups
-    .flatMap((group) => group.skills)
-    .filter((skill) => skill.evidence.includes("homelab"))
-    .map((skill) => skill.name),
-  page: { label: "Homelab section", href: "/#homelab" },
-  links: [],
-  compact: false,
-};
-
 function buildGroups(): TimelineGroup[] {
   const all = [...projects, ...otherProjects, ...earlyProjects];
   const years = [
@@ -76,10 +58,7 @@ function buildGroups(): TimelineGroup[] {
     {
       key: "ongoing",
       title: "Ongoing",
-      entries: [
-        homelabEntry,
-        ...all.filter((project) => project.year === "ongoing").map(toEntry),
-      ],
+      entries: all.filter((project) => project.year === "ongoing").map(toEntry),
     },
     ...years.map((year) => ({
       key: String(year),

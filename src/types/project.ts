@@ -19,6 +19,8 @@ export type ProjectDiagram = ProjectImage & {
 export type ProjectChallenge = {
   problem: string;
   solution?: string;
+  // The solution text then describes the investigation so far, not a fix.
+  unresolved?: boolean;
 };
 
 // Case study content for a future /projects/[slug] page.
@@ -30,16 +32,21 @@ export type ProjectCaseStudy = {
   built?: string[];
   technologyChoices?: string[];
   architecture?: string;
+  architectureDiagram?: ProjectDiagram;
   database?: string[];
   databaseDiagram?: ProjectDiagram;
   // Used instead of `built` when the code was not written mainly by me, so the
   // heading does not overstate authorship; `workflow` explains how it was made.
   implemented?: string[];
+  // Infrastructure projects: key components, kept generic and free of private details.
+  infrastructure?: string[];
   workflow?: string[];
   security?: string[];
   securityGaps?: string[];
   deployment?: string[];
   challenges?: ProjectChallenge[];
+  // Challenges and lessons in one section, for projects where they overlap.
+  challengesAndLessons?: ProjectChallenge[];
   learned?: string[];
   liked?: string[];
   differently?: string[];
