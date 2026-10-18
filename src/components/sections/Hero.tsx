@@ -25,7 +25,7 @@ export default function Hero() {
                 fill
                 loading="eager"
                 sizes="100vw"
-                className="-z-10 object-cover object-right opacity-70 [mask-image:linear-gradient(to_bottom,transparent_40%,black)] xl:opacity-100 xl:[mask-image:linear-gradient(to_right,transparent_30%,black_65%)]"
+                className="-z-10 object-cover object-right opacity-70 [mask-image:linear-gradient(to_bottom,transparent_40%,blue)] xl:opacity-100 xl:[mask-image:linear-gradient(to_right,transparent_30%,blue_65%)]"
             />
 
             <div className="mx-auto max-w-content px-page">
