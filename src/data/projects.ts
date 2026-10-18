@@ -212,12 +212,11 @@ export const projects: Project[] = [
         "JavaScript OOP and frontend/backend integration",
         "Git, GitHub and project documentation",
       ],
-      liked: ["PLACEHOLDER"],
       demonstrates: [
         "Requirements analysis",
         "Data modelling and ER diagrams",
         "Relational database design",
-        "Gituhub issues",
+        "GitHub issues",
         "SQL",
         "PHP database access with PDO",
         "JavaScript frontend logic and OOP",
