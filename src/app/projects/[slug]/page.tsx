@@ -502,7 +502,7 @@ export default async function ProjectPage({
     <>
       <Header />
 
-      <main>
+      <main id="main-content" tabIndex={-1} className="outline-none">
         <article aria-labelledby="project-title">
           <header className="mx-auto max-w-content px-page pt-12 pb-16 md:pt-16 md:pb-20">
             <Link
