@@ -65,7 +65,7 @@ export const projects: Project[] = [
         { problem: "React hooks" },
       ],
       learned: [
-        "Once I understood the component structure, I found the technologies enjoyable to work with and gained confidence in building the application",
+        "Once I understood the component structure, I found the technologies enjoyable to work with",
         "Server Actions and environment variables",
         "SEO metadata and structured data",
       ],
@@ -90,10 +90,10 @@ export const projects: Project[] = [
     type: "client",
     period: "Spring 2026",
     year: 2026,
-    role: "Design and implementation",
+    role: "Student developer",
     featured: true,
     summary:
-      "Responsive WordPress website for Pielaveden Keilahalli, built for clear UI, maintainability and content the client can manage without programming.",
+      "Responsive WordPress website for Pielaveden Keilahalli, built for clear UI, maintainability and content the client can manage without programming knowledge.",
     technologies: ["WordPress", "PHP", "JavaScript", "HTML", "CSS", "ACF"],
     highlights: [
       "Astra child theme with a custom header rendered through WordPress hooks",
@@ -110,12 +110,12 @@ export const projects: Project[] = [
       overview:
         "A modern, responsive WordPress website for a real client, focusing on clear UI, maintainability and practical content management. The site covers the home page, competitions and a competition archive, competition sign-up, the club, membership applications, contact details with Google Maps, opening hours, activities and restaurant menu content.",
       built: [
-        "Astra child theme with a custom PHP header rendered through WordPress hooks, replacing the default Astra header",
+        "Astra child theme with a custom PHP header rendered through WordPress hooks",
         "Custom navigation with dropdowns, a mobile hamburger menu and a sticky header",
         "Competition archive built on the same custom post type and WordPress queries",
         "Competition cards generated dynamically with PHP and WP_Query, with poster, status, name, description and one or two client-configured links",
         "Responsive card layout with hover interaction, poster zoom, a \"show more\" overlay and a lightbox",
-        "Content management that lets the client add, edit and publish competitions without programming",
+        "Content management that lets the client add, edit and publish competitions without programming knowledge",
       ],
       database: [
         "Competitions stored as a custom post type",
@@ -297,7 +297,7 @@ export const projects: Project[] = [
       "CRUD operations from the frontend through the API to the database",
     ],
     links: [
-      { label: "Source code", href: "https://github.com/santtu-kumpulainen/hallintajarjestelma-teo" },
+      { label: "Source code", href: "https://github.com/santtu-kumpulainen/teo-hallintajarjestelma" },
     ],
     caseStudy: {
       overview:
@@ -450,7 +450,6 @@ export const projects: Project[] = [
       { label: "Source code", href: "https://github.com/santtu-kumpulainen/portfolio" },
     ],
     caseStudy: {
-      // "Implemented" instead of "What I built": the code was written with AI assistance.
       implemented: [
         "Design tokens for colors, typography, spacing, radii and motion as CSS variables mapped to Tailwind",
         "Responsive header with a keyboard-accessible mobile navigation",

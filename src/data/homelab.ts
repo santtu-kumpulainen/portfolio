@@ -32,8 +32,8 @@ export const homelab: Homelab = {
     { name: "SFTP / SSH", description: "File transfer and remote administration" },
   ],
   planned: [
-    "Vaultwarden as a self-hosted password manager",
     "Dedicated NAS storage",
+    "Vaultwarden as a self-hosted password manager",
     "Monitoring software for the services",
     "Better service management, network security and documentation",
   ],
